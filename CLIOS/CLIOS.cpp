@@ -9,8 +9,7 @@ int main() {
 
 	bool continued = true;
 	string input;
-	const string NAME = "CLIOS", VERSION = "0.7";
-	const string title = " " + NAME + " v" + VERSION + " ";
+	const string title = " CLIOS v0.7 ";
 
 	cout << "\n ";
 	for (int i = 0; i < 118; i++) {
