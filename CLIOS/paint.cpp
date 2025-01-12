@@ -66,6 +66,7 @@ void paint() {
 			gotoxy(--x, y);
 		}
 	} while (c != 113 && c != 81);
+	system("cls");
 }
 
 void border() {
