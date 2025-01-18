@@ -1,12 +1,6 @@
-#include <iostream>
-#include <conio.h>
-
-using namespace std;
+#include "Header.h"
 
 const int X_BEGIN = 1, X_END = 118, Y_BEGIN = 3, Y_END = 28;
-
-void gotoxy(short x, short y);
-void border();
 
 void paint() {
 	int c, x = X_END / 2, y = Y_END / 2 + 2, f = 0;
@@ -85,4 +79,8 @@ void border() {
 		cout << "-";
 	}
 	cout << "+";
+}
+
+void gotoxy(short x, short y) {
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { x, y });
 }

@@ -1,9 +1,4 @@
-#include <iostream>
-
-using namespace std;
-
-void encrypt(string& input);
-void decrypt(string& input);
+#include "Header.h"
 
 void crypt() {
 	string choice, input;

@@ -1,14 +1,4 @@
-#include <iostream>
-#include <clocale>
-#include <chrono>
-#include <thread>
-
-using namespace std;
-
-void printLine(int n, string c1, string c2);
-void printSymbol(string c);
-void printSymbolN(int n, string c);
-void printBattery(int z);
+#include "Header.h"
 
 void sample() {
 	setlocale(LC_ALL, "");
@@ -42,7 +32,7 @@ void sample() {
 		printLine(118, "|", " ");
 		printLine(118, "+", "-");
 		printBattery(m[i] / 10);
-		this_thread::sleep_for(chrono::milliseconds(100));
+		this_thread::sleep_for(chrono::milliseconds(50));
 	}
 }
 
