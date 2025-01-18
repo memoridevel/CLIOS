@@ -1,14 +1,16 @@
 #pragma once
 #include <iostream>
 #include <Windows.h>
-#include <clocale>
 #include <chrono>
 #include <thread>
 #include <conio.h>
 
 using namespace std;
 
-void runCommand(string input);
+const int X_BEGIN = 1, X_END = 118, Y_BEGIN = 3, Y_END = 28;
+
+void run(string input);
+void printTitle(string name, string version);
 
 void crypt();
 void encrypt(string& input);

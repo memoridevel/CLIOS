@@ -1,13 +1,10 @@
 #include "Header.h"
 
-const int X_BEGIN = 1, X_END = 118, Y_BEGIN = 3, Y_END = 28;
-
 void paint() {
+	printTitle("Console Paint", "1.16");
+
 	int c, x = X_END / 2, y = Y_END / 2 + 2, f = 0;
 
-	system("cls");
-	cout << "Console Paint v1.15\n";
-	cout << " Пробел - Ручка       Delete - Ластик       Escape - Свободное перемещение       Enter - Очистить экран       q - Выход\n";
 	border();
 	gotoxy(x, y);
 
@@ -60,27 +57,4 @@ void paint() {
 			gotoxy(--x, y);
 		}
 	} while (c != 113 && c != 81);
-	system("cls");
-}
-
-void border() {
-	cout << "+";
-	for (int i = X_BEGIN; i <= X_END; i++) {
-		cout << "-";
-	}
-	cout << "+\n";
-	for (int i = Y_BEGIN; i <= Y_END; i++) {
-		cout << "|";
-		gotoxy(X_END + 1, i);
-		cout << "|\n";
-	}
-	cout << "+";
-	for (int i = X_BEGIN; i <= X_END; i++) {
-		cout << "-";
-	}
-	cout << "+";
-}
-
-void gotoxy(short x, short y) {
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { x, y });
 }

@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="CLIOS.cpp" />
     <ClCompile Include="crypt.cpp" />
+    <ClCompile Include="Functions.cpp" />
     <ClCompile Include="paint.cpp" />
     <ClCompile Include="sample.cpp" />
   </ItemGroup>
