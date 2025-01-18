@@ -2,17 +2,20 @@
 
 void run(string input) {
 	cout << "\n << ";
-	if (input == "crypt" || input == "paint" || input == "sample") {
+	if (find(begin(commands), end(commands), input)) {
 		cout << "starting " << input << "...";
 		system("cls");
-		if (input == "crypt") {
+		if (input == commands[0]) {
 			crypt();
 		}
-		else if (input == "paint") {
+		else if (input == commands[1]) {
 			paint();
 		}
-		else if (input == "sample") {
+		else if (input == commands[2]) {
 			sample();
+		}
+		else if (input == commands[3]) {
+			field();
 		}
 		system("cls");
 	}
@@ -29,7 +32,7 @@ void printTitle(string name, string version) {
 	cout << " " << title << " \n";
 }
 
-void encrypt(string& input) {
+string encrypt(string input) {
 	reverse(input.begin(), input.end());
 	for (unsigned int i = 0; i < input.size(); i += 2) {		// symbol + i + 1
 		input[i] += (i + 1);
@@ -45,9 +48,9 @@ void encrypt(string& input) {
 		}
 	}
 	reverse(input.begin(), input.end());
-	cout << "Encrypted: " << input << "\n";
+	return input;
 }
-void decrypt(string& input) {
+string decrypt(string input) {
 	reverse(input.begin(), input.end());
 	for (unsigned int i = 0; i < input.size(); i++) {			// symbol + 1
 		if (i % 2 == 0) {
@@ -63,7 +66,7 @@ void decrypt(string& input) {
 		input[i] -= (i + 1);
 	}
 	reverse(input.begin(), input.end());
-	cout << "Decrypted: " << input << "\n";
+	return input;
 }
 
 void border() {
@@ -166,4 +169,13 @@ void printBattery(int z) {
 		printSymbolN(53, " ");
 	}
 	printLine(10, "+", "-");
+}
+
+void ban() {
+	cout << "BBBBBBB       A      NN    N\n";
+	cout << "B     B      A A     N N   N\n";
+	cout << "BBBBBBBB    A   A    N  N  N\n";
+	cout << "B      B   AAAAAAA   N   N N\n";
+	cout << "BBBBBBBB  A       A  N    NN\n";
+	system("pause>nul");
 }

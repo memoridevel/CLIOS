@@ -1,7 +1,7 @@
 #include "Header.h"
 
 void crypt() {
-	printTitle("Crypt", "0.9612");
+	printTitle("Crypt", "0.962");
 
 	string choice, input;
 
@@ -12,12 +12,12 @@ void crypt() {
 		if (choice == "0") {
 			cout << "Enter string to encrypt: ";
 			cin >> input;
-			encrypt(input);
+			cout << "Encrypted: " << encrypt(input) << "\n";
 		}
 		else if (choice == "1") {
 			cout << "Enter string to decrypt: ";
 			cin >> input;
-			decrypt(input);
+			cout << "Decrypted: " << decrypt(input) << "\n";
 		}
 		else if (choice == "quit" || choice == "exit") {
 			break;
