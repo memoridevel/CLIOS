@@ -1,8 +1,10 @@
 #pragma once
+using namespace std;
 
-void start(string input);
+void runCommand(string input);
 
 void crypt();
 void paint();
+void sample();
 
 void gotoxy(short x, short y);
