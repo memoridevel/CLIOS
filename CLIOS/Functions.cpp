@@ -1,28 +1,5 @@
 #include "Header.h"
 
-void run(string input) {
-	cout << "\n << ";
-	if (find(begin(commands), end(commands), input)) {
-		cout << "starting " << input << "...";
-		system("cls");
-		if (input == commands[0]) {
-			crypt();
-		}
-		else if (input == commands[1]) {
-			paint();
-		}
-		else if (input == commands[2]) {
-			sample();
-		}
-		else if (input == commands[3]) {
-			field();
-		}
-		system("cls");
-	}
-	else {
-		cout << "unknown command\n";
-	}
-}
 void printTitle(string name, string version) {
 	string title = name + " v" + version;
 	for (int i = 0; i < X_END + 2; i++) {

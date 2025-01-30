@@ -1,8 +1,8 @@
 #pragma once
 #include <iostream>
 #include <Windows.h>
-#include <chrono>
-#include <thread>
+//#include <chrono>
+//#include <thread>
 #include <conio.h>
 #include <vector>
 #include <algorithm>
@@ -12,7 +12,6 @@ using namespace std;
 const int X_BEGIN = 1, X_END = 118, Y_BEGIN = 3, Y_END = 28;
 const string commands[] = { "crypt", "paint", "sample", "field" };
 
-void run(string input);
 void printTitle(string name, string version);
 
 void crypt();
