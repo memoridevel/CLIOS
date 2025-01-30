@@ -1,11 +1,11 @@
 #include "Header.h"
 
 void crypt() {
-	printTitle("Crypt", "0.98");
-
 	string input;
 	char c;
 	int y = 1;
+
+	printTitle("Crypt", "0.98");
 
 	cout << "> Encrypt\n  Decrypt";
 	gotoxy(0, y);
@@ -23,6 +23,7 @@ void crypt() {
 			gotoxy(0, y);
 		}
 	} while (c != 13 && c != 113 && c != 81);
+
 	if (c == 13) {
 		gotoxy(0, 1);
 		cout << "         \n         ";

@@ -1,10 +1,9 @@
 #include "Header.h"
 
 void paint() {
-	printTitle("Console Paint", "1.16");
-
 	int c, x = X_END / 2, y = Y_END / 2 + 2, f = 0;
 
+	printTitle("Console Paint", "1.16");
 	border();
 	gotoxy(x, y);
 

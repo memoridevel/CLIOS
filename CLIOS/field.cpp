@@ -1,8 +1,6 @@
 #include "Header.h"
 
-void field() {
-    printTitle("Поле чудес", "1.431");
-
+void field(string name, bool debug) {
     vector<string> words = {
         "программа",
         "система",
@@ -29,26 +27,12 @@ void field() {
     };
     const int MAX_WRONG = 8;
     const string THE_WORD = words[0];
-    bool debug = 0;
     int wrong = 0;
-    string name, password, soFar(THE_WORD.size(), '-'), used = "";
+    string soFar(THE_WORD.size(), '-'), used = "";
 
+    printTitle("Поле чудес", "1.431");
     srand(static_cast<unsigned int>(time(0)));
     random_shuffle(words.begin(), words.end());
-
-    cout << "\nВведите имя: ";
-    cin >> name;
-    if (name == "mik573269") {
-        cout << "Введите пароль: ";
-        cin >> password;
-        if (password == decrypt("lwiegy`r!$!")) {
-            debug = 1;
-            cout << "Debug mode is ON.\n";
-        }
-        else {
-            ban();
-        }
-    }
 
     cout << "\nДобро пожаловать в Поле чудес, " << name << ". Удачи!\n\n";
 
@@ -127,9 +111,5 @@ void field() {
         cout << "\nВы угадали слово!";
     }
     cout << "\nИскомое слово: " << THE_WORD;
-
-    if (debug) {
-        cout << "\nDebug mode is OFF.\n";
-    }
     system("pause>nul");
 }

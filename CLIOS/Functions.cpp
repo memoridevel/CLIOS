@@ -154,5 +154,8 @@ void ban() {
 	cout << "BBBBBBBB    A   A    N  N  N\n";
 	cout << "B      B   AAAAAAA   N   N N\n";
 	cout << "BBBBBBBB  A       A  N    NN\n";
-	system("pause>nul");
+	char c;
+	do {
+		c = _getch();
+	} while (c != 74);
 }

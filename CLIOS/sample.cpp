@@ -1,12 +1,12 @@
 #include "Header.h"
 
 void sample() {
-	printTitle("Анимация зарядки", "0.unknown");
-
 	const int n = 100;
 	int m[n + 1], tmp = 115;
 
+	printTitle("Анимация зарядки", "0.unknown");
 	system("pause>nul");
+
 	for (int i = 0; i <= n; i++) {
 		m[i] = i;
 	}

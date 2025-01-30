@@ -28,5 +28,5 @@ void printSymbol(string c);
 void printSymbolN(int n, string c);
 void printBattery(int z);
 
-void field();
+void field(string name, bool debug);
 void ban();
