@@ -133,6 +133,7 @@
     <ClCompile Include="Functions.cpp" />
     <ClCompile Include="paint.cpp" />
     <ClCompile Include="sample.cpp" />
+    <ClCompile Include="tic_tac_toe.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header.h" />

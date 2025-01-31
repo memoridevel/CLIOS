@@ -33,6 +33,5 @@ void sample() {
 		printLine(X_END, "|", " ");
 		printLine(X_END, "+", "-");
 		printBattery(m[i] / 10);
-		//this_thread::sleep_for(chrono::milliseconds(50));
 	}
 }

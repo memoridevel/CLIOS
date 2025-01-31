@@ -16,7 +16,7 @@ void crypt() {
 			if (y == 1) {
 				gotoxy(0, ++y);
 			}
-			else if (y == 2) {
+			else {
 				gotoxy(0, --y);
 			}
 			cout << '>';

@@ -8,6 +8,21 @@ void printTitle(string name, string version) {
 	gotoxy(short(X_END - title.length()) / 2, 0);
 	cout << " " << title << " \n";
 }
+void logo() {
+	gotoxy(short(X_END - 45) / 2, short(Y_END - 3) / 2 - 2);
+	cout << "============   CCCC  L      III  OOOO   SSSSS";
+	gotoxy(short(X_END - 45) / 2, short(Y_END - 3) / 2 - 1);
+	cout << "|          |  C    C L       I  O    O S";
+	gotoxy(short(X_END - 45) / 2, short(Y_END - 3) / 2);
+	cout << "| >>       |  C      L       I  O    O  SSSS";
+	gotoxy(short(X_END - 45) / 2, short(Y_END - 3) / 2 + 1);
+	cout << "|          |  C    C L       I  O    O      S";
+	gotoxy(short(X_END - 45) / 2, short(Y_END - 3) / 2 + 2);
+	cout << "+----------+   CCCC  LLLLLL III  OOOO  SSSSS";
+	gotoxy(X_END - 13, 0);
+	cout << "(c) memoridevel";
+	gotoxy(0, 0);
+}
 
 string encrypt(string input) {
 	reverse(input.begin(), input.end());
@@ -148,14 +163,25 @@ void printBattery(int z) {
 	printLine(10, "+", "-");
 }
 
-void ban() {
-	cout << "BBBBBBB       A      NN    N\n";
-	cout << "B     B      A A     N N   N\n";
-	cout << "BBBBBBBB    A   A    N  N  N\n";
-	cout << "B      B   AAAAAAA   N   N N\n";
-	cout << "BBBBBBBB  A       A  N    NN\n";
-	char c;
-	do {
-		c = _getch();
-	} while (c != 74);
-}
+//void ban() {
+//	system("cls");
+//	gotoxy(short(X_END - 28) / 2, short(Y_END - 3) / 2 - 2);
+//	cout << "BBBBBBB       A      NN    N\n";
+//	gotoxy(short(X_END - 28) / 2, short(Y_END - 3) / 2 - 1);
+//	cout << "B     B      A A     N N   N\n";
+//	gotoxy(short(X_END - 28) / 2, short(Y_END - 3) / 2);
+//	cout << "BBBBBBBB    A   A    N  N  N\n";
+//	gotoxy(short(X_END - 28) / 2, short(Y_END - 3) / 2 + 1);
+//	cout << "B      B   AAAAAAA   N   N N\n";
+//	gotoxy(short(X_END - 28) / 2, short(Y_END - 3) / 2 + 2);
+//	cout << "BBBBBBBB  A       A  N    NN\n";
+//	gotoxy(0, 0);
+//	char c;
+//	do {
+//		c = _getch();
+//	} while (c != 74);
+//	cout << "ok, i don't know how you escape from this (i know it, i just rofl)\n";
+//	cout << "you crashed my code (no, yo just have broken login)\n";
+//	cout << "now you can get admin rights (just go fly a kite)\n";
+//	system("pause>nul");
+//}

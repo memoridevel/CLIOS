@@ -1,2 +1,4 @@
-﻿  CLIOS.cpp
+﻿  field.cpp
+D:\code\cpp\CLIOS\CLIOS\field.cpp(30,42): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\code\cpp\CLIOS\CLIOS\field.cpp(30,25): warning C4267: инициализация: преобразование из "size_t" в "const int"; возможна потеря данных
   CLIOS.vcxproj -> D:\code\cpp\CLIOS\x64\Debug\CLIOS.exe

@@ -5,39 +5,34 @@ int main() {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	string login, password, input;
-	bool debug = 0;
+	bool admin;
+	hash<string> hasher;
+	unordered_map<string, long long> logpass;
 
-	gotoxy(short(X_END - 45) / 2, short(Y_END - 3) / 2 - 2);
-	cout << "============   CCCC  L      III  OOOO   SSSSS";
-	gotoxy(short(X_END - 45) / 2, short(Y_END - 3) / 2 - 1);
-	cout << "|          |  C    C L       I  O    O S";
-	gotoxy(short(X_END - 45) / 2, short(Y_END - 3) / 2);
-	cout << "| >>       |  C      L       I  O    O  SSSS";
-	gotoxy(short(X_END - 45) / 2, short(Y_END - 3) / 2 + 1);
-	cout << "|          |  C    C L       I  O    O      S";
-	gotoxy(short(X_END - 45) / 2, short(Y_END - 3) / 2 + 2);
-	cout << "+----------+   CCCC  LLLLLL III  OOOO  SSSSS";
-	gotoxy(0, 0);
+	logpass.insert({ "c{_'-!&$'", hasher("lwiegy`r!$!") });
+	logpass.insert({ "!'\\uts!'", hasher("=/>>=3") });
+
+	logo();
 	cout << "Welcome to CLIOS";
-	gotoxy(X_END - 13, 0);
-	cout << "(c) memoridevel\n";
-
-	cout << "Введите логин: ";
+	enter:
+	cout << "\nЛогин: ";
 	cin >> login;
-	if (login == decrypt("c{_'-!&$'")) {
-		cout << "Введите пароль: ";
-		cin >> password;
-		if (password == decrypt("lwiegy`r!$!")) {
-			debug = 1;
-		}
-		else {
-			ban();
-			login = "vbr%&#@^(";
-		}
+	cout << "Пароль: ";
+	cin >> password;
+	if (login == decrypt("c{_'-!&$'") && hasher(encrypt(password)) == logpass.at("c{_'-!&$'")) {
+		admin = true;
+	}
+	else if (login == decrypt("!'\\uts!'") && hasher(encrypt(password)) == logpass.at("!'\\uts!'")) {
+		admin = false;
+	}
+	else {
+		cout << "Неверный логин или пароль";
+		this_thread::sleep_for(chrono::milliseconds(1500));
+		goto enter;
 	}
 
 	system("cls");
-	printTitle("CLIOS", "0.95");
+	printTitle("CLIOS", "0.999");
 
 	while (true) {
 		cout << "\n" + login + " >> ";
@@ -60,7 +55,10 @@ int main() {
 					sample();
 				}
 				else if (input == commands[3]) {
-					field(login, debug);
+					field(login, admin);
+				}
+				else if (input == commands[4]) {
+					ttt();
 				}
 				else {
 					cout << "command not found";

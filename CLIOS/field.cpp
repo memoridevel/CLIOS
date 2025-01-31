@@ -1,6 +1,6 @@
 #include "Header.h"
 
-void field(string name, bool debug) {
+void field(string name, bool admin) {
     vector<string> words = {
         "программа",
         "система",
@@ -15,7 +15,6 @@ void field(string name, bool debug) {
         "кресло",
         "котёнок",
         "калькулятор",
-        "фижма",
         "луна",
         "школа",
         "цыплёнок",
@@ -25,18 +24,18 @@ void field(string name, bool debug) {
         "мир",
         "звезда"
     };
-    const int MAX_WRONG = 8;
+    srand(static_cast<unsigned int>(time(0)));
+    random_shuffle(words.begin(), words.end());
     const string THE_WORD = words[0];
+    const int MAX_WRONG = (int)THE_WORD.length();
     int wrong = 0;
     string soFar(THE_WORD.size(), '-'), used = "";
 
-    printTitle("Поле чудес", "1.431");
-    srand(static_cast<unsigned int>(time(0)));
-    random_shuffle(words.begin(), words.end());
+    printTitle("Поле чудес", "0.718");
 
-    cout << "\nДобро пожаловать в Поле чудес, " << name << ". Удачи!\n\n";
+    cout << "Добро пожаловать в Поле чудес, " << name << ". Удачи!\n\n";
 
-    if (debug) {
+    if (admin) {
         cout << "MAX_WRONG = " << MAX_WRONG << "\n";
         cout << "THE_WORD = " << THE_WORD << "\n";
         cout << "wrong = " << wrong << "\n";
@@ -54,7 +53,7 @@ void field(string name, bool debug) {
         cin >> guess;
         guess = tolower(guess);
 
-        if (debug) {
+        if (admin) {
             cout << "\nguess = " << guess << "\n";
             cout << "(used.find(guess) != string::npos) = " << (used.find(guess) != string::npos) << "\n";
         }
@@ -65,21 +64,21 @@ void field(string name, bool debug) {
             cin >> guess;
             guess = toupper(guess);
 
-            if (debug) {
+            if (admin) {
                 cout << "\nguess = " << guess << "\n";
                 cout << "(used.find(guess) != string::npos) = " << (used.find(guess) != string::npos) << "\n";
             }
         }
         used += guess;
 
-        if (debug) {
+        if (admin) {
             cout << "(THE_WORD.find(guess) != string::npos) = " << (THE_WORD.find(guess) != string::npos) << "\n";
         }
 
         if (THE_WORD.find(guess) != string::npos) {
             cout << "Верно! " << guess << " есть в этом слове.\n\n";
             for (unsigned int i = 0; i < THE_WORD.length(); ++i) {
-                if (debug) {
+                if (admin) {
                     cout << "(THE_WORD[i] == guess) = " << (THE_WORD[i] == guess) << "\n";
                 }
                 if (THE_WORD[i] == guess) {
@@ -92,7 +91,7 @@ void field(string name, bool debug) {
             ++wrong;
         }
 
-        if (debug) {
+        if (admin) {
             cout << "wrong = " << wrong << "\n";
             cout << "soFar = " << soFar << "\n";
             cout << "used = " << used << "\n";
@@ -100,7 +99,7 @@ void field(string name, bool debug) {
         }
     }
 
-    if (debug) {
+    if (admin) {
         cout << "(wrong == MAX_WRONG) = " << (wrong == MAX_WRONG) << "\n";
     }
 
