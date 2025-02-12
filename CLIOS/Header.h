@@ -10,39 +10,50 @@
 
 using namespace std;
 
-const int X_BEGIN = 1, X_END = 118, Y_BEGIN = 3, Y_END = 28;
-const string commands[] = { "crypt", "paint", "sample", "field", "ttt" };
+const int
+	X_BEGIN = 1,
+	X_END = 118,
+	Y_BEGIN = 3,
+	Y_END = 28;
+const char
+	X = 'X',
+	O = 'O',
+	EMPTY = ' ',
+	TIE = 'T',
+	NO_ONE = 'N',
+	DEBUG = 'D';
 
-void printTitle(string name, string version);
-void logo();
+void printTitle(string, string);
+void gotoxy(short, short);
+
+void printLogo(const string*, const size_t&);
+byte logon(string&, string&, const string*, unordered_map<string, long long>&, hash<string>&);
+void run(const string&, const string*, const size_t&, const string&, const byte&);
 
 void crypt();
-string encrypt(string input);
-string decrypt(string input);
+string encrypt(string);
+string decrypt(string);
 
 void paint();
-void gotoxy(short x, short y);
 void border();
 
 void sample();
-void printLine(int n, string c1, string c2);
-void printSymbol(string c);
-void printSymbolN(int n, string c);
-void printBattery(int z);
+void printLine(int, string, string, string);
+void printSymbol(string);
+void printSymbolN(int, string);
+void printBattery(int);
 
-void field(string name, bool debug);
-//void ban();
+void field(string, bool);
 
 void ttt();
-void gameVer(string ver);
 void instructions();
 char askYN();
-int askNum(string question, int high, int low = 0);
+int askNum(int, int);
 char humanPiece();
-char opponent(char piece);
-void displayBoard(const vector<char>& board);
-char winner(const vector<char>& board);
-bool isLegal(const vector<char>& board, int move);
-int humanMove(const vector<char>& board, char human);
-int computerMove(const vector<char> board, char computer);
-void announceWinner(char winner, char computer, char human);
+char opponent(char);
+void displayBoard(const vector<char>&);
+char winner(const vector<char>&);
+bool isLegal(const vector<char>&, int);
+int humanMove(const vector<char>&, char);
+int computerMove(const vector<char>, char);
+void announceWinner(char, char, char);

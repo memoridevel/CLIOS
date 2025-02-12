@@ -2,26 +2,67 @@
 
 void printTitle(string name, string version) {
 	string title = name + " v" + version;
-	for (int i = 0; i < X_END + 2; i++) {
-		cout << '=';
-	}
+	printLine(X_END, "\315", "\315", "\315\n");
 	gotoxy(short(X_END - title.length()) / 2, 0);
 	cout << " " << title << " \n";
 }
-void logo() {
-	gotoxy(short(X_END - 45) / 2, short(Y_END - 3) / 2 - 2);
-	cout << "============   CCCC  L      III  OOOO   SSSSS";
-	gotoxy(short(X_END - 45) / 2, short(Y_END - 3) / 2 - 1);
-	cout << "|          |  C    C L       I  O    O S";
-	gotoxy(short(X_END - 45) / 2, short(Y_END - 3) / 2);
-	cout << "| >>       |  C      L       I  O    O  SSSS";
-	gotoxy(short(X_END - 45) / 2, short(Y_END - 3) / 2 + 1);
-	cout << "|          |  C    C L       I  O    O      S";
-	gotoxy(short(X_END - 45) / 2, short(Y_END - 3) / 2 + 2);
-	cout << "+----------+   CCCC  LLLLLL III  OOOO  SSSSS";
+void gotoxy(short x, short y) {
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { x, y });
+}
+
+void printLogo(const string* cliosLogo, const size_t& n) {
+	for (int i = 0; i < n; i++) {
+		gotoxy(short(X_END - 45) / 2, short((Y_END - 3) / 2 - n / 2 + i));
+		cout << cliosLogo[i];
+	}
 	gotoxy(X_END - 13, 0);
 	cout << "(c) memoridevel";
 	gotoxy(0, 0);
+}
+byte logon(string& login, string& password, const string* logins, unordered_map<string, long long>& passwords, hash<string>& hasher) {
+	cout << "Welcome to CLIOS";
+	while (true) {
+		cout << "\nЛогин: ";
+		cin >> login;
+		if (login == "guest") {
+			return 2;
+		}
+		cout << "Пароль: ";
+		cin >> password;
+		if (login == decrypt(logins[0]) && hasher(encrypt(password)) == passwords.at(logins[0])) {
+			return 1;
+		}
+		else if (login == decrypt(logins[1]) && hasher(encrypt(password)) == passwords.at(logins[1])) {
+			return 0;
+		}
+		else {
+			cout << "Неверный логин или пароль";
+			this_thread::sleep_for(chrono::milliseconds(2000));
+		}
+	}
+}
+void run(const string& input, const string* commands, const size_t& n, const string& name, const byte& userRule) {
+	if (find(&commands[0], &commands[n - 1], input) != &commands[n]) {
+		cout << "запуск " << input << "…";
+		system("cls");
+		if (input == commands[0]) crypt();
+		else if (input == commands[1]) paint();
+		else if (input == commands[2]) sample();
+		else if (input == commands[3]) field(name, userRule == 1);
+		else if (input == commands[4]) ttt();
+		else if (input == commands[5]) cout << "      #             #\n     # #           # #\n    #   #         #   #\n   #     #########     #\n  #                     #\n #                       #\n#                         #\n#      ###       ###      #\n#       #         #       #\n#           ###           #\n#            #            #\n #        #  #  #        #\n  #        #####        #\n    #                 #\n      ###############";
+		else cout << "command not found";
+		system("cls");
+	}
+	else if (input == "help") {
+		cout << "Список всех команд:\n";
+		for (int i = 0; i < n; i++) {
+			cout << commands[i] << "\n";
+		}
+	}
+	else {
+		cout << "\"" + input + "\" не является внутренней или внешней командой, исполняемой программой или пакетным файлом.\n";
+	}
 }
 
 string encrypt(string input) {
@@ -62,42 +103,17 @@ string decrypt(string input) {
 }
 
 void border() {
-	const string SPACE = "       ";
-	cout << " Пробел - Ручка";
-	cout << SPACE;
-	cout << "Delete - Ластик";
-	cout << SPACE;
-	cout << "Escape - Свободное перемещение";
-	cout << SPACE;
-	cout << "Enter - Очистить экран";
-	cout << SPACE;
-	cout << "q - Выход\n";
-
-	cout << "+";
-	for (int i = X_BEGIN; i <= X_END; i++) {
-		cout << "-";
+	printLine(X_END, "\332", "\304", "\277\n");
+	for (int i = 0; i < Y_END - 1; i++) {
+		printLine(X_END, "\263", " ", "\263\n");
 	}
-	cout << "+\n";
-	for (int i = Y_BEGIN; i <= Y_END; i++) {
-		cout << "|";
-		gotoxy(X_END + 1, i);
-		cout << "|\n";
-	}
-	cout << "+";
-	for (int i = X_BEGIN; i <= X_END; i++) {
-		cout << "-";
-	}
-	cout << "+";
-}
-void gotoxy(short x, short y) {
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { x, y });
+	printLine(X_END, "\300", "\304", "\331");
 }
 
-void printLine(int n, string c1, string c2) {
+void printLine(int n, string c1, string c2, string c3) {
 	printSymbol(c1);
 	printSymbolN(n, c2);
-	printSymbol(c1);
-	cout << "\n";
+	printSymbol(c3);
 }
 void printSymbol(string c) {
 	cout << c;
@@ -110,7 +126,7 @@ void printSymbolN(int n, string c) {
 void printBattery(int z) {
 	cout << "\n";
 	printSymbolN(55, " ");
-	printLine(6, "+", "-");
+	printLine(6, "+", "-", "+\n");
 	printSymbolN(55, " ");
 	switch (z) {
 	case 0:
@@ -123,10 +139,10 @@ void printBattery(int z) {
 	case 7:
 	case 8:
 	case 9:
-		printLine(6, "|", " ");
+		printLine(6, "|", " ", "|\n");
 		break;
 	case 10:
-		printLine(6, "|", "#");
+		printLine(6, "|", "#", "|\n");
 		break;
 	}
 	printSymbolN(53, " ");
@@ -140,11 +156,11 @@ void printBattery(int z) {
 	case 6:
 	case 7:
 	case 8:
-		printLine(6, "+-+", " ");
+		printLine(6, "+-+", " ", "+-+\n");
 		break;
 	case 9:
 	case 10:
-		printLine(6, "+-+", "#");
+		printLine(6, "+-+", "#", "+-+\n");
 		break;
 	}
 	printSymbolN(53, " ");
@@ -153,35 +169,164 @@ void printBattery(int z) {
 		z = 8;
 	}
 	for (int i = 0; i < 8 - z; i++) {
-		printLine(10, "|", " ");
+		printLine(10, "|", " ", "|\n");
 		printSymbolN(53, " ");
 	}
 	for (int i = 0; i < z; i++) {
-		printLine(10, "|", "#");
+		printLine(10, "|", "#", "|\n");
 		printSymbolN(53, " ");
 	}
-	printLine(10, "+", "-");
+	printLine(10, "+", "-", "+\n");
 }
 
-//void ban() {
-//	system("cls");
-//	gotoxy(short(X_END - 28) / 2, short(Y_END - 3) / 2 - 2);
-//	cout << "BBBBBBB       A      NN    N\n";
-//	gotoxy(short(X_END - 28) / 2, short(Y_END - 3) / 2 - 1);
-//	cout << "B     B      A A     N N   N\n";
-//	gotoxy(short(X_END - 28) / 2, short(Y_END - 3) / 2);
-//	cout << "BBBBBBBB    A   A    N  N  N\n";
-//	gotoxy(short(X_END - 28) / 2, short(Y_END - 3) / 2 + 1);
-//	cout << "B      B   AAAAAAA   N   N N\n";
-//	gotoxy(short(X_END - 28) / 2, short(Y_END - 3) / 2 + 2);
-//	cout << "BBBBBBBB  A       A  N    NN\n";
-//	gotoxy(0, 0);
-//	char c;
-//	do {
-//		c = _getch();
-//	} while (c != 74);
-//	cout << "ok, i don't know how you escape from this (i know it, i just rofl)\n";
-//	cout << "you crashed my code (no, yo just have broken login)\n";
-//	cout << "now you can get admin rights (just go fly a kite)\n";
-//	system("pause>nul");
-//}
+void instructions() {
+	cout << "Добро пожаловать на противостояние человека и машины: Крестики-нолики.\n";
+	cout << "- где человеческий мозг противостоит кремниевому процессору\n\n";
+	cout << "Сделай ход, введя число от 1 до 9.\n";
+	cout << "Число соответствует желаемой клетке, как показано на рисунке:\n\n";
+	cout << " 1 | 2 | 3\n";
+	cout << " --+---+--\n";
+	cout << " 4 | 5 | 6\n";
+	cout << " --+---+--\n";
+	cout << " 7 | 8 | 9\n\n";
+	cout << "Приготовься, человек. Битва вот-вот начнется.\n\n";
+}
+char askYN() {
+	char c;
+	int y = 16;
+	cout << "Ты будешь ходить первым?\n";
+	cout << "> Да\n  Нет";
+	gotoxy(0, y);
+	do {
+		c = _getch();
+		if (c == 80 || c == 72) {
+			cout << ' ';
+			if (y == 16) {
+				gotoxy(0, ++y);
+			}
+			else {
+				gotoxy(0, --y);
+			}
+			cout << '>';
+			gotoxy(0, y);
+		}
+	} while (c != 13);
+	return y == 16 ? 'y' : 'n';
+}
+int askNum(int high, int low = 0) {
+	int number;
+	do {
+		cout << "Куда ты походишь ? (" << (low + 1) << " - " << (high + 1) << ") : ";
+		cin >> number;
+		number--;
+	} while (number > high || number < low);
+	return number;
+}
+char humanPiece() {
+	char goFirst = askYN();
+	if (goFirst == 'y') {
+		cout << "\n\nТогда сделай первый ход. Тебе это понадобится.\n";
+		return X;
+	}
+	cout << "\nТвоя храбрость станет твоей погибелью... Я пойду первым.\n";
+	return O;
+}
+char opponent(char piece) {
+	if (piece == X) {
+		return O;
+	}
+	return X;
+}
+void displayBoard(const vector<char>& board) {
+	cout << "\n\t" << board[0] << " | " << board[1] << " | " << board[2];
+	cout << "\n\t" << "--+---+--";
+	cout << "\n\t" << board[3] << " | " << board[4] << " | " << board[5];
+	cout << "\n\t" << "--+---+--";
+	cout << "\n\t" << board[6] << " | " << board[7] << " | " << board[8] << "\n\n";
+}
+char winner(const vector<char>& board) {
+	const int WINNING_ROWS[8][3] = { {0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6} };
+	const int TOTAL_ROWS = 8;
+	for (int row = 0; row < TOTAL_ROWS; ++row) {
+		if ((board[WINNING_ROWS[row][0]] != EMPTY) && (board[WINNING_ROWS[row][0]] == board[WINNING_ROWS[row][1]]) && (board[WINNING_ROWS[row][1]] == board[WINNING_ROWS[row][2]])) {
+			return board[WINNING_ROWS[row][0]];
+		}
+	}
+	if (count(board.begin(), board.end(), EMPTY) == 0) {
+		return TIE;
+	}
+	return NO_ONE;
+}
+bool isLegal(const vector<char>& board, int move) {
+	return (board[move] == EMPTY);
+}
+int humanMove(const vector<char>& board, char human) {
+	unsigned int move;
+	do {
+		move = askNum((int(board.size()) - 1));
+		if (!isLegal(board, move)) {
+			cout << "\nЭта клетка уже занята, глупый человек.\n";
+		}
+	} while (!isLegal(board, move));
+	cout << "Хорошо...\n";
+	return move;
+}
+int computerMove(vector<char> board, char computer) {
+	unsigned int move = 0;
+	bool found = false;
+	while (!found && move < board.size()) {
+		if (isLegal(board, move)) {
+			board[move] = computer;
+			found = winner(board) == computer;
+			board[move] = EMPTY;
+		}
+		if (!found) {
+			move++;
+		}
+	}
+	if (!found) {
+		move = 0;
+		char human = opponent(computer);
+		while (!found && move < board.size()) {
+			if (isLegal(board, move)) {
+				board[move] = human;
+				found = winner(board) == human;
+				board[move] = EMPTY;
+			}
+			if (!found) {
+				move++;
+			}
+		}
+	}
+	if (!found) {
+		move = 0;
+		unsigned int i = 0;
+		const int BEST_MOVES[] = { 4, 0, 2, 6, 8, 1, 3, 5, 7 };
+		while (!found && i < board.size()) {
+			move = BEST_MOVES[i];
+			if (isLegal(board, move)) {
+				found = true;
+			}
+			i++;
+		}
+	}
+	cout << "Я займу клетку номер " << (move + 1) << endl;
+	return move;
+}
+void announceWinner(char winner, char computer, char human) {
+	if (winner == computer) {
+		cout << winner << " победил!\n";
+		cout << "Как я и предсказывал, человек, я снова торжествую - доказательство\n";
+		cout << "того, что компьютеры превосходят людей во всех отношениях.\n";
+	}
+	else if (winner == human) { // как этого добиться
+		cout << winner << " победил!\n";
+		cout << "Нет, нет! Этого не может быть! Tы каким-то образом обманул меня, человек.\n";
+		cout << "Но больше никогда! Я, компьютер, так клянусь в этом!\n";
+	}
+	else {
+		cout << "Это ничья.\n";
+		cout << "Тебе очень повезло, человек, и каким-то образом тебе удалось поставить ничью.\n";
+		cout << "Празднуй... потому что это лучшее, чего ты когда-либо достигнешь.\n";
+	}
+}

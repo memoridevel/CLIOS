@@ -6,7 +6,6 @@ void crypt() {
 	int y = 1;
 
 	printTitle("Crypt", "0.98");
-
 	cout << "> Encrypt\n  Decrypt";
 	gotoxy(0, y);
 	do {
