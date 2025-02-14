@@ -17,7 +17,7 @@ void paint() {
 	330 331 332 333 334 335 336 337
 	*/
 
-	printTitle("Console Paint", "0.58");
+	printTitle("Console Paint", "0.9");
 	border();
 	gotoxy(x, y);
 	do {
@@ -55,49 +55,49 @@ void paint() {
 		}
 		else if (c == 104) {
 			f = 0;
-			gotoxy(short(X_END - 18) / 2, short(Y_END) / 2 - 5);
-			cout << "\311\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\273\n";
-			gotoxy(short(X_END - 18) / 2, short(Y_END) / 2 - 4);
-			cout << "\272                  \272\n";
-			gotoxy(short(X_END - 18) / 2, short(Y_END) / 2 - 3);
-			cout << "\272                  \272\n";
-			gotoxy(short(X_END - 18) / 2, short(Y_END) / 2 - 2);
-			cout << "\272                  \272\n";
-			gotoxy(short(X_END - 18) / 2, short(Y_END) / 2 - 1);
-			cout << "\272                  \272\n";
-			gotoxy(short(X_END - 18) / 2, short(Y_END) / 2);
-			cout << "\272                  \272\n";
-			gotoxy(short(X_END - 18) / 2, short(Y_END) / 2 + 1);
-			cout << "\272                  \272\n";
-			gotoxy(short(X_END - 18) / 2, short(Y_END) / 2 + 2);
-			cout << "\272                  \272\n";
-			gotoxy(short(X_END - 18) / 2, short(Y_END) / 2 + 3);
-			cout << "\272                  \272\n";
-			gotoxy(short(X_END - 18) / 2, short(Y_END) / 2 + 4);
-			cout << "\272                  \272\n";
-			gotoxy(short(X_END - 18) / 2, short(Y_END) / 2 + 5);
-			cout << "\310\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\274\n";
+			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 - 5);
+			cout << "\311\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\273\n";
+			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 - 4);
+			cout << "\272                   \272\n";
+			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 - 3);
+			cout << "\272                   \272\n";
+			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 - 2);
+			cout << "\272                   \272\n";
+			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 - 1);
+			cout << "\272                   \272\n";
+			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2);
+			cout << "\272                   \272\n";
+			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 + 1);
+			cout << "\272                   \272\n";
+			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 + 2);
+			cout << "\272                   \272\n";
+			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 + 3);
+			cout << "\272                   \272\n";
+			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 + 4);
+			cout << "\272                   \272\n";
+			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 + 5);
+			cout << "\310\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\274\n";
 
-			gotoxy(short(X_END - 4) / 2 + 1, short(Y_END) / 2 - 5);
-			cout << " Help ";
-			gotoxy(short(X_END - 18) / 2 + 1, short(Y_END) / 2 - 4);
-			cout << "Key h - Help\n";
-			gotoxy(short(X_END - 18) / 2 + 1, short(Y_END) / 2 - 3);
-			cout << "Key q - Exit\n";
-			gotoxy(short(X_END - 18) / 2 + 1, short(Y_END) / 2 - 2);
-			cout << "Key z - \260\n";
-			gotoxy(short(X_END - 18) / 2 + 1, short(Y_END) / 2 - 1);
-			cout << "Key x - \261\n";
-			gotoxy(short(X_END - 18) / 2 + 1, short(Y_END) / 2);
-			cout << "Key c - \262\n";
-			gotoxy(short(X_END - 18) / 2 + 1, short(Y_END) / 2 + 1);
-			cout << "Key v - \333\n";
-			gotoxy(short(X_END - 18) / 2 + 1, short(Y_END) / 2 + 2);
-			cout << "Delete - Eraser\n";
-			gotoxy(short(X_END - 18) / 2 + 1, short(Y_END) / 2 + 3);
-			cout << "Escape - Cursor\n";
-			gotoxy(short(X_END - 18) / 2 + 1, short(Y_END) / 2 + 4);
-			cout << "Space - Clean";
+			gotoxy(short(X_END - 9) / 2, short(Y_END) / 2 - 5);
+			cout << rus(" Справка ");
+			gotoxy(short(X_END - 19) / 2, short(Y_END) / 2 - 4);
+			cout << rus("Клавиша h - справка\n");
+			gotoxy(short(X_END - 19) / 2, short(Y_END) / 2 - 3);
+			cout << rus("Клавиша q - выход\n");
+			gotoxy(short(X_END - 19) / 2, short(Y_END) / 2 - 2);
+			cout << rus("Клавиша z - ") << "\260\n";
+			gotoxy(short(X_END - 19) / 2, short(Y_END) / 2 - 1);
+			cout << rus("Клавиша x - ") << "\261\n";
+			gotoxy(short(X_END - 19) / 2, short(Y_END) / 2);
+			cout << rus("Клавиша c - ") << "\262\n";
+			gotoxy(short(X_END - 19) / 2, short(Y_END) / 2 + 1);
+			cout << rus("Клавиша v - ") << "\333\n";
+			gotoxy(short(X_END - 19) / 2, short(Y_END) / 2 + 2);
+			cout << rus("Пробел - очистить");
+			gotoxy(short(X_END - 19) / 2, short(Y_END) / 2 + 3);
+			cout << rus("Delete - ластик\n");
+			gotoxy(short(X_END - 19) / 2, short(Y_END) / 2 + 4);
+			cout << rus("Escape - курсор\n");
 			system("pause>nul");
 			for (int i = 0; i < Y_END - 1; i++) {
 				gotoxy(1, i + 2);

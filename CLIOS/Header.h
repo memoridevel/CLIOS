@@ -11,20 +11,16 @@
 using namespace std;
 
 const int
-	X_BEGIN = 1,
-	X_END = 118,
-	Y_BEGIN = 3,
-	Y_END = 28;
+	X_BEGIN = 1, X_END = 118,
+	Y_BEGIN = 3, Y_END = 28;
 const char
-	X = 'X',
-	O = 'O',
-	EMPTY = ' ',
-	TIE = 'T',
-	NO_ONE = 'N',
-	DEBUG = 'D';
+	X = 'X', O = 'O',
+	EMPTY = ' ', TIE = 'T',
+	NO_ONE = 'N', DEBUG = 'D';
 
 void printTitle(string, string);
 void gotoxy(short, short);
+char* rus(const char*);
 
 void printLogo(const string*, const size_t&);
 byte logon(string&, string&, const string*, unordered_map<string, long long>&, hash<string>&);

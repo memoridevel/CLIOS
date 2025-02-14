@@ -4,21 +4,20 @@ int main() {
 	/*setlocale(LC_ALL, "");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);*/
-
 	string login, password, input;
 	const string cliosLogo[] {
-		"============   CCCC  L      III  OOOO   SSSSS",
-		"|          |  C    C L       I  O    O S",
-		"| >>       |  C      L       I  O    O  SSSS",
-		"|          |  C    C L       I  O    O      S",
-		"+----------+   CCCC  LLLLLL III  OOOO  SSSSS"
+		"\325\315\315\315\315\315\315\315\315\315\315\270   CCCC  L      III  OOOO   SSSSS",
+		"\263          \263  C    C L       I  O    O S",
+		"\263 >>       \263  C      L       I  O    O  SSSS",
+		"\263          \263  C    C L       I  O    O      S",
+		"\300\304\304\304\304\304\304\304\304\304\304\331   CCCC  LLLLLL III  OOOO  SSSSS"
 	},
 		commands[] { "crypt", "paint", "sample", "field", "ttt", "meow" },
-		logins[]{ "c{_'-!&$'", "!'\\uts!'" };
+		logins[]{ "uoi", "!'\\uts!'" };
 	byte userRule;
 	hash<string> hasher;
 	unordered_map<string, long long> passwords;
-	passwords.insert({ logins[0], hasher("lwiegy`r!$!") });
+	passwords.insert({ logins[0], hasher("@V48%)#)") });
 	passwords.insert({ logins[1], hasher("=/>>=3") });
 
 	printLogo(cliosLogo, size(cliosLogo));

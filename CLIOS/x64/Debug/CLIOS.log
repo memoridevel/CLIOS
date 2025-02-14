@@ -1,4 +1,1 @@
-﻿  Functions.cpp
-  sample.cpp
-  Создание кода...
-  CLIOS.vcxproj -> D:\code\cpp\CLIOS\x64\Debug\CLIOS.exe
+﻿D:\code\cpp\CLIOS\CLIOS\CLIOS.vcxproj : error MSB4025: не удалось загрузить файл проекта. Файл 'D:\code\cpp\CLIOS\CLIOS\CLIOS.vcxproj' не найден.

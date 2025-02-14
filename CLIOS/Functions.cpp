@@ -9,6 +9,11 @@ void printTitle(string name, string version) {
 void gotoxy(short x, short y) {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { x, y });
 }
+char* rus(const char* st) {
+	static char buf[sizeof(st)];
+	CharToOemA(st, buf);
+	return buf;
+}
 
 void printLogo(const string* cliosLogo, const size_t& n) {
 	for (int i = 0; i < n; i++) {
@@ -22,12 +27,12 @@ void printLogo(const string* cliosLogo, const size_t& n) {
 byte logon(string& login, string& password, const string* logins, unordered_map<string, long long>& passwords, hash<string>& hasher) {
 	cout << "Welcome to CLIOS";
 	while (true) {
-		cout << "\nЛогин: ";
+		cout << rus("\nЛогин: ");
 		cin >> login;
 		if (login == "guest") {
 			return 2;
 		}
-		cout << "Пароль: ";
+		cout << rus("Пароль: ");
 		cin >> password;
 		if (login == decrypt(logins[0]) && hasher(encrypt(password)) == passwords.at(logins[0])) {
 			return 1;
@@ -36,14 +41,13 @@ byte logon(string& login, string& password, const string* logins, unordered_map<
 			return 0;
 		}
 		else {
-			cout << "Неверный логин или пароль";
+			cout << rus("Неверный логин или пароль");
 			this_thread::sleep_for(chrono::milliseconds(2000));
 		}
 	}
 }
 void run(const string& input, const string* commands, const size_t& n, const string& name, const byte& userRule) {
-	if (find(&commands[0], &commands[n - 1], input) != &commands[n]) {
-		cout << "запуск " << input << "…";
+	if (find(&commands[0], &commands[n], input) != &commands[n]) {
 		system("cls");
 		if (input == commands[0]) crypt();
 		else if (input == commands[1]) paint();
@@ -51,17 +55,17 @@ void run(const string& input, const string* commands, const size_t& n, const str
 		else if (input == commands[3]) field(name, userRule == 1);
 		else if (input == commands[4]) ttt();
 		else if (input == commands[5]) cout << "      #             #\n     # #           # #\n    #   #         #   #\n   #     #########     #\n  #                     #\n #                       #\n#                         #\n#      ###       ###      #\n#       #         #       #\n#           ###           #\n#            #            #\n #        #  #  #        #\n  #        #####        #\n    #                 #\n      ###############";
-		else cout << "command not found";
+		else cout << rus("404 команда не найдена");
 		system("cls");
 	}
 	else if (input == "help") {
-		cout << "Список всех команд:\n";
+		cout << rus("Список всех команд:\n");
 		for (int i = 0; i < n; i++) {
 			cout << commands[i] << "\n";
 		}
 	}
 	else {
-		cout << "\"" + input + "\" не является внутренней или внешней командой, исполняемой программой или пакетным файлом.\n";
+		cout << "\"" + input + rus("\" не является внутренней или внешней командой, исполняемой программой или пакетным файлом.\n");
 	}
 }
 
@@ -180,22 +184,22 @@ void printBattery(int z) {
 }
 
 void instructions() {
-	cout << "Добро пожаловать на противостояние человека и машины: Крестики-нолики.\n";
-	cout << "- где человеческий мозг противостоит кремниевому процессору\n\n";
-	cout << "Сделай ход, введя число от 1 до 9.\n";
-	cout << "Число соответствует желаемой клетке, как показано на рисунке:\n\n";
-	cout << " 1 | 2 | 3\n";
-	cout << " --+---+--\n";
-	cout << " 4 | 5 | 6\n";
-	cout << " --+---+--\n";
-	cout << " 7 | 8 | 9\n\n";
-	cout << "Приготовься, человек. Битва вот-вот начнется.\n\n";
+	cout << rus("Добро пожаловать на противостояние человека и машины: Крестики-нолики.\n\
+		- где человеческий мозг противостоит кремниевому процессору\n\n\
+		Сделай ход, введя число от 1 до 9.\n\
+		Число соответствует желаемой клетке, как показано на рисунке:\n\n\
+		 1 | 2 | 3\n\
+		 --+---+--\n\
+		 4 | 5 | 6\n\
+		 --+---+--\n\
+		 7 | 8 | 9\n\n\
+		Приготовься, человек. Битва вот-вот начнется.\n\n");
 }
 char askYN() {
 	char c;
 	int y = 16;
-	cout << "Ты будешь ходить первым?\n";
-	cout << "> Да\n  Нет";
+	cout << rus("Ты будешь ходить первым?\n");
+	cout << rus("> Да\n  Нет");
 	gotoxy(0, y);
 	do {
 		c = _getch();
@@ -216,7 +220,7 @@ char askYN() {
 int askNum(int high, int low = 0) {
 	int number;
 	do {
-		cout << "Куда ты походишь ? (" << (low + 1) << " - " << (high + 1) << ") : ";
+		cout << rus("Куда ты походишь ? (") << (low + 1) << " - " << (high + 1) << ") : ";
 		cin >> number;
 		number--;
 	} while (number > high || number < low);
@@ -225,10 +229,10 @@ int askNum(int high, int low = 0) {
 char humanPiece() {
 	char goFirst = askYN();
 	if (goFirst == 'y') {
-		cout << "\n\nТогда сделай первый ход. Тебе это понадобится.\n";
+		cout << rus("\n\nТогда сделай первый ход. Тебе это понадобится.\n");
 		return X;
 	}
-	cout << "\nТвоя храбрость станет твоей погибелью... Я пойду первым.\n";
+	cout << rus("\nТвоя храбрость станет твоей погибелью... Я пойду первым.\n");
 	return O;
 }
 char opponent(char piece) {
@@ -265,10 +269,10 @@ int humanMove(const vector<char>& board, char human) {
 	do {
 		move = askNum((int(board.size()) - 1));
 		if (!isLegal(board, move)) {
-			cout << "\nЭта клетка уже занята, глупый человек.\n";
+			cout << rus("\nЭта клетка уже занята, глупый человек.\n");
 		}
 	} while (!isLegal(board, move));
-	cout << "Хорошо...\n";
+	cout << rus("Хорошо...\n");
 	return move;
 }
 int computerMove(vector<char> board, char computer) {
@@ -310,23 +314,23 @@ int computerMove(vector<char> board, char computer) {
 			i++;
 		}
 	}
-	cout << "Я займу клетку номер " << (move + 1) << endl;
+	cout << rus("Я займу клетку номер ") << (move + 1) << endl;
 	return move;
 }
 void announceWinner(char winner, char computer, char human) {
 	if (winner == computer) {
-		cout << winner << " победил!\n";
-		cout << "Как я и предсказывал, человек, я снова торжествую - доказательство\n";
-		cout << "того, что компьютеры превосходят людей во всех отношениях.\n";
+		cout << winner << rus(" победил!\n\
+			Как я и предсказывал, человек, я снова торжествую - доказательство\n\
+			того, что компьютеры превосходят людей во всех отношениях.\n");
 	}
 	else if (winner == human) { // как этого добиться
-		cout << winner << " победил!\n";
-		cout << "Нет, нет! Этого не может быть! Tы каким-то образом обманул меня, человек.\n";
-		cout << "Но больше никогда! Я, компьютер, так клянусь в этом!\n";
+		cout << winner << rus(" победил!\n\
+			Нет, нет! Этого не может быть! Tы каким-то образом обманул меня, человек.\n\
+			Но больше никогда! Я, компьютер, клянусь в этом!\n");
 	}
 	else {
-		cout << "Это ничья.\n";
-		cout << "Тебе очень повезло, человек, и каким-то образом тебе удалось поставить ничью.\n";
-		cout << "Празднуй... потому что это лучшее, чего ты когда-либо достигнешь.\n";
+		cout << rus("Это ничья.\n\
+			Тебе очень повезло, человек, и каким-то образом тебе удалось поставить ничью.\n\
+			Празднуй... потому что это лучшее, чего ты когда-либо достигнешь.\n");
 	}
 }
