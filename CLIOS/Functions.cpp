@@ -15,30 +15,32 @@ char* rus(const char* st) {
 	return buf;
 }
 
-void printLogo(const string* cliosLogo, const size_t& n) {
+void printLogo(const string* cliosLogo, const size_t& n, const byte& length) {
 	for (int i = 0; i < n; i++) {
-		gotoxy(short(X_END - 45) / 2, short((Y_END - 3) / 2 - n / 2 + i));
+		gotoxy(short(X_END - length) / 2, short((Y_END - 3) / 2 - n / 2 + i));
 		cout << cliosLogo[i];
 	}
-	gotoxy(X_END - 13, 0);
-	cout << "(c) memoridevel";
-	gotoxy(0, 0);
 }
 byte logon(string& login, string& password, const string* logins, unordered_map<string, long long>& passwords, hash<string>& hasher) {
-	cout << "Welcome to CLIOS";
+	gotoxy(X_END - 13, 0);
+	cout << "(c) memoridevel";
+	gotoxy(0, 0);cout << "Welcome to CLIOS";
 	while (true) {
 		cout << rus("\nЛогин: ");
 		cin >> login;
 		if (login == "guest") {
-			return 2;
+			return 3;
 		}
 		cout << rus("Пароль: ");
 		cin >> password;
 		if (login == decrypt(logins[0]) && hasher(encrypt(password)) == passwords.at(logins[0])) {
-			return 1;
+			return 0;
 		}
 		else if (login == decrypt(logins[1]) && hasher(encrypt(password)) == passwords.at(logins[1])) {
-			return 0;
+			return 1;
+		}
+		else if (login == decrypt(logins[2]) && hasher(encrypt(password)) == passwords.at(logins[2])) {
+			return 2;
 		}
 		else {
 			cout << rus("Неверный логин или пароль");
@@ -46,21 +48,21 @@ byte logon(string& login, string& password, const string* logins, unordered_map<
 		}
 	}
 }
-void run(const string& input, const string* commands, const size_t& n, const string& name, const byte& userRule) {
-	if (find(&commands[0], &commands[n], input) != &commands[n]) {
+void run(const string& input, const string* commands, const size_t& nC, const string& name, const byte& userRule, const string* morda, const size_t& nM, const string* hack, const size_t& nH) {
+	if (find(&commands[0], &commands[nC], input) != &commands[nC]) {
 		system("cls");
-		if (input == commands[0]) crypt();
+		if (input == commands[0]) if (userRule == 0) crypt(); else cout << rus("Отказано в доступе");
 		else if (input == commands[1]) paint();
-		else if (input == commands[2]) sample();
-		else if (input == commands[3]) field(name, userRule == 1);
+		else if (input == commands[2]) if (userRule != 3) sample(); else cout << rus("Отказано в доступе");
+		else if (input == commands[3]) field(name, userRule == 0);
 		else if (input == commands[4]) ttt();
-		else if (input == commands[5]) cout << "      #             #\n     # #           # #\n    #   #         #   #\n   #     #########     #\n  #                     #\n #                       #\n#                         #\n#      ###       ###      #\n#       #         #       #\n#           ###           #\n#            #            #\n #        #  #  #        #\n  #        #####        #\n    #                 #\n      ###############";
+		else if (input == commands[5]) if (userRule == 0 || userRule == 1) cat(morda, nM); else ban(hack, nH);
 		else cout << rus("404 команда не найдена");
-		system("cls");
+		system("pause>nul & cls & color 07");
 	}
 	else if (input == "help") {
 		cout << rus("Список всех команд:\n");
-		for (int i = 0; i < n; i++) {
+		for (int i = 0; i < nC; i++) {
 			cout << commands[i] << "\n";
 		}
 	}
@@ -106,12 +108,13 @@ string decrypt(string input) {
 	return input;
 }
 
-void border() {
-	printLine(X_END, "\332", "\304", "\277\n");
-	for (int i = 0; i < Y_END - 1; i++) {
-		printLine(X_END, "\263", " ", "\263\n");
+void border(const int x, const int y, const string ul, const string ud, const string ur, const string lr, const string dl, const string dr) {
+	printLine(x, ul, ud, ur);
+	for (int i = 0; i < y - 1; i++) {
+		gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 - 4);
+		printLine(x, "\n" + lr, " ", lr);
 	}
-	printLine(X_END, "\300", "\304", "\331");
+	printLine(x, "\n" + dl, ud, dr);
 }
 
 void printLine(int n, string c1, string c2, string c3) {

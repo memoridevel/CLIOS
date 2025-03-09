@@ -18,7 +18,7 @@ void paint() {
 	*/
 
 	printTitle("Console Paint", "0.9");
-	border();
+	border(X_END, Y_END, "\332", "\304", "\277", "\263", "\300", "\331");
 	gotoxy(x, y);
 	do {
 		c = _getch();
@@ -56,28 +56,18 @@ void paint() {
 		else if (c == 104) {
 			f = 0;
 			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 - 5);
-			cout << "\311\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\273\n";
+			border(21, 13, "\311", "\315", "\273", "\272", "\310", "\274");
 			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 - 4);
-			cout << "\272                   \272\n";
 			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 - 3);
-			cout << "\272                   \272\n";
 			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 - 2);
-			cout << "\272                   \272\n";
 			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 - 1);
-			cout << "\272                   \272\n";
 			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2);
-			cout << "\272                   \272\n";
 			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 + 1);
-			cout << "\272                   \272\n";
 			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 + 2);
-			cout << "\272                   \272\n";
 			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 + 3);
-			cout << "\272                   \272\n";
 			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 + 4);
-			cout << "\272                   \272\n";
 			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 + 5);
-			cout << "\310\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\274\n";
-
+			
 			gotoxy(short(X_END - 9) / 2, short(Y_END) / 2 - 5);
 			cout << rus(" Справка ");
 			gotoxy(short(X_END - 19) / 2, short(Y_END) / 2 - 4);

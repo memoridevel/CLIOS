@@ -108,5 +108,4 @@ void field(string login, bool admin) {
 		cout << "\nВы угадали слово!";
 	}
 	cout << "\nИскомое слово: " << THE_WORD;
-	system("pause>nul");
 }

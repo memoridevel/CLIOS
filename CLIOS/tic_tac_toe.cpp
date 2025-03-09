@@ -24,5 +24,4 @@ void ttt() {
 		turn = opponent(turn);
 	}
 	announceWinner(winner(board), computer, human);
-	system("pause>nul");
 }

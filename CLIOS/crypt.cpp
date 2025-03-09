@@ -39,5 +39,4 @@ void crypt() {
 			cout << "Decrypted: " << decrypt(input);
 		}
 	}
-	system("pause>nul");
 }
