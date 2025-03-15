@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="baraban.cpp" />
     <ClCompile Include="cat.cpp" />
     <ClCompile Include="CLIOS.cpp" />
     <ClCompile Include="crypt.cpp" />

@@ -1,6 +1,6 @@
 #include "Header.h"
 
-void paint() {
+void paint(const string* help, const size_t& nH) {
 	int c, x = X_END / 2, y = Y_END / 2 + 2, f = 0;
 	char paper[Y_END - 1][X_END]{};
 	for (int i = 0; i < Y_END - 1; i++) {
@@ -55,39 +55,7 @@ void paint() {
 		}
 		else if (c == 104) {
 			f = 0;
-			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 - 5);
-			border(21, 13, "\311", "\315", "\273", "\272", "\310", "\274");
-			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 - 4);
-			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 - 3);
-			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 - 2);
-			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 - 1);
-			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2);
-			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 + 1);
-			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 + 2);
-			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 + 3);
-			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 + 4);
-			gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 + 5);
-			
-			gotoxy(short(X_END - 9) / 2, short(Y_END) / 2 - 5);
-			cout << rus(" Справка ");
-			gotoxy(short(X_END - 19) / 2, short(Y_END) / 2 - 4);
-			cout << rus("Клавиша h - справка\n");
-			gotoxy(short(X_END - 19) / 2, short(Y_END) / 2 - 3);
-			cout << rus("Клавиша q - выход\n");
-			gotoxy(short(X_END - 19) / 2, short(Y_END) / 2 - 2);
-			cout << rus("Клавиша z - ") << "\260\n";
-			gotoxy(short(X_END - 19) / 2, short(Y_END) / 2 - 1);
-			cout << rus("Клавиша x - ") << "\261\n";
-			gotoxy(short(X_END - 19) / 2, short(Y_END) / 2);
-			cout << rus("Клавиша c - ") << "\262\n";
-			gotoxy(short(X_END - 19) / 2, short(Y_END) / 2 + 1);
-			cout << rus("Клавиша v - ") << "\333\n";
-			gotoxy(short(X_END - 19) / 2, short(Y_END) / 2 + 2);
-			cout << rus("Пробел - очистить");
-			gotoxy(short(X_END - 19) / 2, short(Y_END) / 2 + 3);
-			cout << rus("Delete - ластик\n");
-			gotoxy(short(X_END - 19) / 2, short(Y_END) / 2 + 4);
-			cout << rus("Escape - курсор\n");
+			printLogo(help, nH, 25);
 			system("pause>nul");
 			for (int i = 0; i < Y_END - 1; i++) {
 				gotoxy(1, i + 2);

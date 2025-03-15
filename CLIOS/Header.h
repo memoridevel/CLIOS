@@ -24,13 +24,14 @@ char* rus(const char*);
 
 void printLogo(const string*, const size_t&, const byte&);
 byte logon(string&, string&, const string*, unordered_map<string, long long>&, hash<string>&);
-void run(const string&, const string*, const size_t&, const string&, const byte&, const string*, const size_t&, const string*, const size_t&);
+void run(const string&, const string*, const size_t&, const string&, const byte&, const string*, const size_t&, const string*, const size_t&/*, const string*, const size_t&*/);
+void start(const string&, const byte&, const string&, const string*, const size_t&, const string*, const size_t&);
 
 void crypt();
 string encrypt(string);
 string decrypt(string);
 
-void paint();
+void paint(const string*, const size_t&);
 void border(int, int, string, string, string, string, string, string);
 
 void sample();
@@ -39,7 +40,7 @@ void printSymbol(string);
 void printSymbolN(int, string);
 void printBattery(int);
 
-void field(string, bool);
+void field(string);
 
 void ttt();
 void instructions();
@@ -55,5 +56,6 @@ int computerMove(const vector<char>, char);
 void announceWinner(char, char, char);
 
 void cat(const string*, const size_t&);
+/*void ban(const string*, const size_t&);*/
 
-void ban(const string*, const size_t&);
+void baraban();

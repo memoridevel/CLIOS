@@ -1,6 +1,6 @@
 #include "Header.h"
 
-void field(string login, bool admin) {
+void field(string login) {
 	vector<string> words = {
 		"программа",
 		"система",
@@ -31,81 +31,49 @@ void field(string login, bool admin) {
 	int wrong = 0;
 	string soFar(THE_WORD.size(), '-'), used = "";
 
-	printTitle("Поле чудес", "0.718");
-	cout << "Добро пожаловать в Поле чудес, " << login << ". Удачи!\n\n";
-	if (admin) {
-		cout << "MAX_WRONG = " << MAX_WRONG << "\n";
-		cout << "THE_WORD = " << THE_WORD << "\n";
-		cout << "wrong = " << wrong << "\n";
-		cout << "soFar = " << soFar << "\n";
-		cout << "used = " << used << "\n";
-		cout << "((wrong < MAX_WRONG) && (soFar != THE_WORD)) = " << ((wrong < MAX_WRONG) && (soFar != THE_WORD)) << "\n" << "\n";
-	}
-
+	printTitle(rus("Поле чудес"), "0.9");
+	cout << rus("Добро пожаловать в Поле чудес, ") << login;
+	cout << rus(". Удачи!\n\n");
+	
 	while ((wrong < MAX_WRONG) && (soFar != THE_WORD)) {
-		cout << "\nУ вас есть " << (MAX_WRONG - wrong) << " попыток.\n";
-		cout << "\nВы использовали эти буквы: " << used << "\n";
-		cout << "\nТекущее слово: " << soFar << "\n";
+		cout << rus("\nУ вас есть ") << (MAX_WRONG - wrong);
+		cout << rus(" попыток.\n\n");
+		cout << rus("Вы использовали эти буквы: ") << used;
+		cout << rus("\n\nТекущее слово: ") << soFar;
 		char guess;
-		cout << "\nВведите букву: ";
+		cout << rus("\n\nВведите букву: ");
 		cin >> guess;
 		guess = tolower(guess);
 
-		if (admin) {
-			cout << "\nguess = " << guess << "\n";
-			cout << "(used.find(guess) != string::npos) = " << (used.find(guess) != string::npos) << "\n";
-		}
-
 		while (used.find(guess) != string::npos) {
-			cout << "\nВы уже угадывали эту букву " << guess << "\n";
-			cout << "\nВведите букву: ";
+			cout << rus("\nВы уже угадывали эту букву ") << guess;
+			cout << rus("\n\nВведите букву: ");
 			cin >> guess;
 			guess = toupper(guess);
-
-			if (admin) {
-				cout << "\nguess = " << guess << "\n";
-				cout << "(used.find(guess) != string::npos) = " << (used.find(guess) != string::npos) << "\n";
-			}
 		}
 		used += guess;
 
-		if (admin) {
-			cout << "(THE_WORD.find(guess) != string::npos) = " << (THE_WORD.find(guess) != string::npos) << "\n";
-		}
-
 		if (THE_WORD.find(guess) != string::npos) {
-			cout << "Верно! " << guess << " есть в этом слове.\n\n";
+			cout << rus("Верно! ") << guess;
+			cout << rus(" есть в этом слове.\n\n");
 			for (unsigned int i = 0; i < THE_WORD.length(); ++i) {
-				if (admin) {
-					cout << "(THE_WORD[i] == guess) = " << (THE_WORD[i] == guess) << "\n";
-				}
 				if (THE_WORD[i] == guess) {
 					soFar[i] = guess;
 				}
 			}
 		}
 		else {
-			cout << "К сожалению, " << guess << " нет в этом слове.\n\n";
+			cout << rus("К сожалению, ") << guess;
+			cout << rus(" нет в этом слове.\n\n");
 			++wrong;
 		}
-
-		if (admin) {
-			cout << "wrong = " << wrong << "\n";
-			cout << "soFar = " << soFar << "\n";
-			cout << "used = " << used << "\n";
-			cout << "((wrong < MAX_WRONG) && (soFar != THE_WORD)) = " << ((wrong < MAX_WRONG) && (soFar != THE_WORD)) << "\n";
-		}
-	}
-
-	if (admin) {
-		cout << "(wrong == MAX_WRONG) = " << (wrong == MAX_WRONG) << "\n";
 	}
 
 	if (wrong == MAX_WRONG) {
-		cout << "\nВы не угадали слово.";
+		cout << rus("\nВы не угадали слово.");
 	}
 	else {
-		cout << "\nВы угадали слово!";
+		cout << rus("\nВы угадали слово!");
 	}
-	cout << "\nИскомое слово: " << THE_WORD;
+	cout << rus("\nИскомое слово: ") << THE_WORD;
 }

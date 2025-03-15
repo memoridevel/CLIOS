@@ -15,16 +15,17 @@ char* rus(const char* st) {
 	return buf;
 }
 
-void printLogo(const string* cliosLogo, const size_t& n, const byte& length) {
+void printLogo(const string* logo, const size_t& n, const byte& length) {
 	for (int i = 0; i < n; i++) {
 		gotoxy(short(X_END - length) / 2, short((Y_END - 3) / 2 - n / 2 + i));
-		cout << cliosLogo[i];
+		cout << logo[i];
 	}
 }
 byte logon(string& login, string& password, const string* logins, unordered_map<string, long long>& passwords, hash<string>& hasher) {
 	gotoxy(X_END - 13, 0);
 	cout << "(c) memoridevel";
-	gotoxy(0, 0);cout << "Welcome to CLIOS";
+	gotoxy(0, 0);
+	cout << "Welcome to CLIOS";
 	while (true) {
 		cout << rus("\nЛогин: ");
 		cin >> login;
@@ -48,27 +49,53 @@ byte logon(string& login, string& password, const string* logins, unordered_map<
 		}
 	}
 }
-void run(const string& input, const string* commands, const size_t& nC, const string& name, const byte& userRule, const string* morda, const size_t& nM, const string* hack, const size_t& nH) {
-	if (find(&commands[0], &commands[nC], input) != &commands[nC]) {
+void run(const string& input, const string* commands, const size_t& nC, const string& name, const byte& rule, const string* morda, const size_t& nM, const string* help, const size_t& nH/*, const string* hack, const size_t& nH*/) {
+	switch (find(&commands[0], &commands[nC], input) - &commands[0]) {
+	case 0:
+		for (int i = 0; i < nC; i++) cout << commands[i] << "\n";
+		break;
+	case 1:
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+	case 6:
+	case 7:
 		system("cls");
-		if (input == commands[0]) if (userRule == 0) crypt(); else cout << rus("Отказано в доступе");
-		else if (input == commands[1]) paint();
-		else if (input == commands[2]) if (userRule != 3) sample(); else cout << rus("Отказано в доступе");
-		else if (input == commands[3]) field(name, userRule == 0);
-		else if (input == commands[4]) ttt();
-		else if (input == commands[5]) if (userRule == 0 || userRule == 1) cat(morda, nM); else ban(hack, nH);
-		else cout << rus("404 команда не найдена");
-		system("pause>nul & cls & color 07");
+		start(input, rule, name, morda, nM, help, nH);
+		break;
+	default:
+		cout << "\"" + input + rus("\" не является внутренней или внешней командой, исполняемой программой или пакетным файлом.\n");
+		break;
 	}
-	else if (input == "help") {
-		cout << rus("Список всех команд:\n");
-		for (int i = 0; i < nC; i++) {
-			cout << commands[i] << "\n";
-		}
+}
+void start(const string& program, const byte& rule, const string& name, const string* morda, const size_t& nM, const string* help, const size_t& nH) {
+	if (program == "crypt" && !rule) {
+		crypt();
+	}
+	else if (program == "paint") {
+		paint(help, nH);
+	}
+	else if (program == "sample" && rule != 3) {
+		sample();
+	}
+	else if (program == "field") {
+		field(name);
+	}
+	else if (program == "ttt") {
+		ttt();
+	}
+	else if (program == "cat" && !rule || rule == 1) {
+		cat(morda, nM);
+	}
+	else if (program == "baraban" && !rule) {
+		baraban();
 	}
 	else {
-		cout << "\"" + input + rus("\" не является внутренней или внешней командой, исполняемой программой или пакетным файлом.\n");
+		cout << rus("Отказано в доступе\n");
+		return;
 	}
+	system("pause>nul & cls & color 07");
 }
 
 string encrypt(string input) {
@@ -111,7 +138,6 @@ string decrypt(string input) {
 void border(const int x, const int y, const string ul, const string ud, const string ur, const string lr, const string dl, const string dr) {
 	printLine(x, ul, ud, ur);
 	for (int i = 0; i < y - 1; i++) {
-		gotoxy(short(X_END - 21) / 2, short(Y_END) / 2 - 4);
 		printLine(x, "\n" + lr, " ", lr);
 	}
 	printLine(x, "\n" + dl, ud, dr);

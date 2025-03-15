@@ -4,7 +4,7 @@ void sample() {
 	const int n = 100;
 	int m[n + 1]{}, tmp = 115;
 
-	printTitle("temp", "0.unknown");
+	printTitle("temp", "0v@");
 	system("pause>nul");
 	for (int i = 0; i <= n; i++) {
 		m[i] = i;
