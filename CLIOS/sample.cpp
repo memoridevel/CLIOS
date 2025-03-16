@@ -6,9 +6,11 @@ void sample() {
 
 	printTitle("temp", "0v@");
 	system("pause>nul");
+
 	for (int i = 0; i <= n; i++) {
 		m[i] = i;
 	}
+
 	for (int i = 0; i <= n; i++) {
 		system("cls");
 		printLine(X_END, "+", "-", "+\n");

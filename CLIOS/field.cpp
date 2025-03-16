@@ -34,7 +34,7 @@ void field(string login) {
 	printTitle(rus("Поле чудес"), "0.9");
 	cout << rus("Добро пожаловать в Поле чудес, ") << login;
 	cout << rus(". Удачи!\n\n");
-	
+
 	while ((wrong < MAX_WRONG) && (soFar != THE_WORD)) {
 		cout << rus("\nУ вас есть ") << (MAX_WRONG - wrong);
 		cout << rus(" попыток.\n\n");
@@ -42,19 +42,19 @@ void field(string login) {
 		cout << rus("\n\nТекущее слово: ") << soFar;
 		char guess;
 		cout << rus("\n\nВведите букву: ");
-		cin >> guess;
+		putchar(guess = _getch());
 		guess = tolower(guess);
 
 		while (used.find(guess) != string::npos) {
 			cout << rus("\nВы уже угадывали эту букву ") << guess;
 			cout << rus("\n\nВведите букву: ");
-			cin >> guess;
-			guess = toupper(guess);
+			putchar(guess = _getch());
+			guess = tolower(guess);
 		}
 		used += guess;
 
 		if (THE_WORD.find(guess) != string::npos) {
-			cout << rus("Верно! ") << guess;
+			cout << rus("\nВерно! ") << guess;
 			cout << rus(" есть в этом слове.\n\n");
 			for (unsigned int i = 0; i < THE_WORD.length(); ++i) {
 				if (THE_WORD[i] == guess) {
@@ -63,7 +63,7 @@ void field(string login) {
 			}
 		}
 		else {
-			cout << rus("К сожалению, ") << guess;
+			cout << rus("\nК сожалению, ") << guess;
 			cout << rus(" нет в этом слове.\n\n");
 			++wrong;
 		}
@@ -75,5 +75,7 @@ void field(string login) {
 	else {
 		cout << rus("\nВы угадали слово!");
 	}
-	cout << rus("\nИскомое слово: ") << THE_WORD;
+	cout << rus("\nИскомое слово: ");
+	cout << rus(THE_WORD.c_str());
 }
+	

@@ -5,9 +5,10 @@ void crypt() {
 	char c;
 	int y = 1;
 
-	printTitle("Crypt", "0.98");
+	printTitle("Crypt", VERSION);
 	cout << "> Encrypt\n  Decrypt";
 	gotoxy(0, y);
+
 	do {
 		c = _getch();
 		if (c == 80 || c == 72) {
@@ -30,12 +31,12 @@ void crypt() {
 		cout << "Enter string to ";
 		if (y == 1) {
 			cout << "encrypt: ";
-			cin >> input;
+			getline(cin, input);
 			cout << "Encrypted: " << encrypt(input);
 		}
 		else {
 			cout << "decrypt: ";
-			cin >> input;
+			getline(cin, input);
 			cout << "Decrypted: " << decrypt(input);
 		}
 	}

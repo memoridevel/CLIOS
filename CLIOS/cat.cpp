@@ -1,8 +1,26 @@
 #include "Header.h"
 
-void cat(const string* morda, const size_t& nM) {
+void cat() {
+	const string morda[]{
+		"      #             #",
+		"     # #           # #",
+		"    #   #         #   #",
+		"   #     #########     #",
+		"  #                     #",
+		" #                       #",
+		"#                         #",
+		"#      ###       ###      #",
+		"#       #         #       #",
+		"#           ###           #",
+		"#            #            #",
+		" #        #  #  #        #",
+		"  #        #####        #",
+		"    #                 #",
+		"      ###############"
+	};
+
 	cout << rus("А я знаю, что ты котиков любишь\n");
-	printLogo(morda, nM, 27);
+	printLogo(morda, size(morda), 27);
 	system("color 56");
 }
 

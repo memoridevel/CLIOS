@@ -21,19 +21,24 @@ void printLogo(const string* logo, const size_t& n, const byte& length) {
 		cout << logo[i];
 	}
 }
-byte logon(string& login, string& password, const string* logins, unordered_map<string, long long>& passwords, hash<string>& hasher) {
+byte logon(string& login, string& password, const string* logins, const unordered_map<string, long long>& passwords, const hash<string>& hasher) {
 	gotoxy(X_END - 13, 0);
 	cout << "(c) memoridevel";
 	gotoxy(0, 0);
 	cout << "Welcome to CLIOS";
 	while (true) {
 		cout << rus("\nЛогин: ");
-		cin >> login;
+		getline(cin, login);
 		if (login == "guest") {
 			return 3;
 		}
 		cout << rus("Пароль: ");
-		cin >> password;
+		//getline(cin, password);
+		char c;
+		while ((c = _getch()) != '\r') {
+			if (c != '\b') password += c;
+			else if (password != "") password = password.substr(0, password.length() - 1);
+		}
 		if (login == decrypt(logins[0]) && hasher(encrypt(password)) == passwords.at(logins[0])) {
 			return 0;
 		}
@@ -44,12 +49,12 @@ byte logon(string& login, string& password, const string* logins, unordered_map<
 			return 2;
 		}
 		else {
-			cout << rus("Неверный логин или пароль");
+			cout << rus("\nНеверный логин или пароль");
 			this_thread::sleep_for(chrono::milliseconds(2000));
 		}
 	}
 }
-void run(const string& input, const string* commands, const size_t& nC, const string& name, const byte& rule, const string* morda, const size_t& nM, const string* help, const size_t& nH/*, const string* hack, const size_t& nH*/) {
+void run(const string& input, const string* commands, const size_t& nC, const string& name, const byte& rule/*, const string* hack, const size_t& nH*/) {
 	switch (find(&commands[0], &commands[nC], input) - &commands[0]) {
 	case 0:
 		for (int i = 0; i < nC; i++) cout << commands[i] << "\n";
@@ -62,21 +67,21 @@ void run(const string& input, const string* commands, const size_t& nC, const st
 	case 6:
 	case 7:
 		system("cls");
-		start(input, rule, name, morda, nM, help, nH);
+		start(input, rule, name);
 		break;
 	default:
 		cout << "\"" + input + rus("\" не является внутренней или внешней командой, исполняемой программой или пакетным файлом.\n");
 		break;
 	}
 }
-void start(const string& program, const byte& rule, const string& name, const string* morda, const size_t& nM, const string* help, const size_t& nH) {
+void start(const string& program, const byte& rule, const string& name) {
 	if (program == "crypt" && !rule) {
 		crypt();
 	}
 	else if (program == "paint") {
-		paint(help, nH);
+		paint();
 	}
-	else if (program == "sample" && rule != 3) {
+	else if (program == "sample" && !rule) {
 		sample();
 	}
 	else if (program == "field") {
@@ -86,13 +91,13 @@ void start(const string& program, const byte& rule, const string& name, const st
 		ttt();
 	}
 	else if (program == "cat" && !rule || rule == 1) {
-		cat(morda, nM);
+		cat();
 	}
 	else if (program == "baraban" && !rule) {
 		baraban();
 	}
 	else {
-		cout << rus("Отказано в доступе\n");
+		cout << program << rus(": Отказано в доступе\n");
 		return;
 	}
 	system("pause>nul & cls & color 07");
@@ -249,9 +254,13 @@ char askYN() {
 int askNum(int high, int low = 0) {
 	int number;
 	do {
-		cout << rus("Куда ты походишь ? (") << (low + 1) << " - " << (high + 1) << ") : ";
-		cin >> number;
-		number--;
+		cout << rus("Куда ты походишь? (1 - 9) ");
+		try {
+			putchar((number = _getch() - '0')--);
+		}
+		catch (exception&) {
+			continue;
+		}
 	} while (number > high || number < low);
 	return number;
 }
@@ -301,7 +310,7 @@ int humanMove(const vector<char>& board, char human) {
 			cout << rus("\nЭта клетка уже занята, глупый человек.\n");
 		}
 	} while (!isLegal(board, move));
-	cout << rus("Хорошо...\n");
+	cout << rus("\nХорошо...\n");
 	return move;
 }
 int computerMove(vector<char> board, char computer) {

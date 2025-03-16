@@ -11,7 +11,8 @@ void ttt() {
 	char computer = opponent(human);
 	char turn = X;
 	displayBoard(board);
-	while (winner(board) == NO_ONE) {
+
+	do {
 		if (turn == human) {
 			move = humanMove(board, human);
 			board[move] = human;
@@ -22,6 +23,6 @@ void ttt() {
 		}
 		displayBoard(board);
 		turn = opponent(turn);
-	}
+	} while (winner(board) == NO_ONE);
 	announceWinner(winner(board), computer, human);
 }

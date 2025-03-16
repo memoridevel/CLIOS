@@ -1,6 +1,6 @@
 #include "Header.h"
 
-void paint(const string* help, const size_t& nH) {
+void paint() {
 	int c, x = X_END / 2, y = Y_END / 2 + 2, f = 0;
 	char paper[Y_END - 1][X_END]{};
 	for (int i = 0; i < Y_END - 1; i++) {
@@ -8,6 +8,22 @@ void paint(const string* help, const size_t& nH) {
 			paper[i][j] = ' ';
 		}
 	}
+	const string help[]{
+		"\311\315\315\315\315\315\315\315\315 Help \315\315\315\315\315\315\315\315\315\273",
+		"\272                       \272",
+		"\272  Key h - help         \272",
+		"\272  Key q - exit         \272",
+		"\272  Key z - \260            \272",
+		"\272  Key x - \261            \272",
+		"\272  Key c - \262            \272",
+		"\272  Key v - \333            \272",
+		"\272  Escape - cursor      \272",
+		"\272  Delete - eraser      \272",
+		"\272  Space - clean        \272",
+		"\272                       \272",
+		"\310\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\315\274"
+	};
+
 	/*
 	260 261 262 263 264 265 266 267
 	270 271 272 273 274 275 276 277
@@ -17,9 +33,10 @@ void paint(const string* help, const size_t& nH) {
 	330 331 332 333 334 335 336 337
 	*/
 
-	printTitle("Console Paint", "0.9");
+	printTitle("Console Paint", "0.97");
 	border(X_END, Y_END, "\332", "\304", "\277", "\263", "\300", "\331");
 	gotoxy(x, y);
+
 	do {
 		c = _getch();
 		//printf("%d", c);
@@ -55,7 +72,7 @@ void paint(const string* help, const size_t& nH) {
 		}
 		else if (c == 104) {
 			f = 0;
-			printLogo(help, nH, 25);
+			printLogo(help, size(help), 25);
 			system("pause>nul");
 			for (int i = 0; i < Y_END - 1; i++) {
 				gotoxy(1, i + 2);
@@ -109,4 +126,5 @@ void paint(const string* help, const size_t& nH) {
 			gotoxy(--x, y);
 		}
 	} while (c != 113 && c != 81);
+	cout << "lost";
 }
