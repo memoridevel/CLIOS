@@ -1,6 +1,6 @@
 #include "Header.h"
 
-void crypt() {
+void crypt() {	// TODO починить алгоритм шифровки
 	string input;
 	char c;
 	int y = 1;

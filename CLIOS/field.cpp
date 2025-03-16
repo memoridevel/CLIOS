@@ -31,7 +31,7 @@ void field(string login) {
 	int wrong = 0;
 	string soFar(THE_WORD.size(), '-'), used = "";
 
-	printTitle(rus("Поле чудес"), "0.9");
+	printTitle(rus("Поле чудес"), VERSION);
 	cout << rus("Добро пожаловать в Поле чудес, ") << login;
 	cout << rus(". Удачи!\n\n");
 

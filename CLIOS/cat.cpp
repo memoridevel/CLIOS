@@ -19,9 +19,9 @@ void cat() {
 		"      ###############"
 	};
 
+	system("color 5e");
 	cout << rus("А я знаю, что ты котиков любишь\n");
 	printLogo(morda, size(morda), 27);
-	system("color 56");
 }
 
 /*void ban(const string* hack, const size_t& nH) {

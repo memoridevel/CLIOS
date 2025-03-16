@@ -1,6 +1,6 @@
 ﻿#include "Header.h"
 
-int main() {
+int main() {	// TODO выход из учётки
 	/*setlocale(LC_ALL, "");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);*/

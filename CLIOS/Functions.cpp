@@ -252,17 +252,12 @@ char askYN() {
 	return y == 16 ? 'y' : 'n';
 }
 int askNum(int high, int low = 0) {
-	int number;
+	char number;
 	do {
-		cout << rus("Куда ты походишь? (1 - 9) ");
-		try {
-			putchar((number = _getch() - '0')--);
-		}
-		catch (exception&) {
-			continue;
-		}
-	} while (number > high || number < low);
-	return number;
+		cout << rus("\rКуда ты походишь? (1 - 9) ");
+		putchar((number = _getch())--);
+	} while (number - '0' > high || number - '0' < low);
+	return number - '0';
 }
 char humanPiece() {
 	char goFirst = askYN();

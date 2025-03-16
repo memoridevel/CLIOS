@@ -6,15 +6,17 @@ void baraban() {
 	int baraban[3]{};
 	bool continued;
 	srand(static_cast<unsigned int>(time(0)));
-	printTitle(rus("Барабан"), "0.98");
+	printTitle(rus("Барабан"), VERSION);
 
 	cout << rus("Введите сумму: ");
 	cin >> sum;
+	cin.ignore();
 	old = sum;
 	max = sum;
 	do {
 		cout << rus("Сколько раз вращать: ");
 		cin >> n;
+		cin.ignore();
 		for (int i = 0; i < n; i++) {
 			system("cls");
 			continued = false;

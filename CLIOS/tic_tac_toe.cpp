@@ -5,7 +5,7 @@ void ttt() {
 	const int NUM_SQUARES = 9;
 	vector<char> board(NUM_SQUARES, EMPTY);
 
-	printTitle("Tic Tac Toe", "0.95");
+	printTitle("Tic Tac Toe", VERSION);
 	instructions();
 	char human = humanPiece();
 	char computer = opponent(human);
